@@ -5,6 +5,7 @@
 # Manual install
 
 ```bash
+$ sudo pip3 install psutil
 $ sudo pip3 install -e .
 ```
 
@@ -26,4 +27,13 @@ $ processchecker --process node --timeInMinutes 5
 
 ```bash
 $ processchecker -h
+$ processchecker --help
+```
+
+# Issues
+
+* DNS Issue (Add google - 8.8.8.8 DNS)
+
+```bash
+$ echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 ```
