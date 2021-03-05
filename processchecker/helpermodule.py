@@ -1,7 +1,21 @@
-import argparse, sys
+import argparse, sys, logging
+from logging.handlers import RotatingFileHandler
 
-def log(text_to_display):
-    print('{}'.format(text_to_display))
+logger = logging.getLogger(__name__)
+logger.setLevel(logging.INFO)
+file_formatter = logging.Formatter('%(name)s - %(levelname)s - %(message)s')
+stream_formatter = logging.Formatter('%(message)s')
+file_handler = RotatingFileHandler('processchecker.log', maxBytes=2000, backupCount=10)
+file_handler.setFormatter(file_formatter)
+
+stream_handler = logging.StreamHandler()
+stream_handler.setFormatter(stream_formatter)
+
+logger.addHandler(file_handler)
+logger.addHandler(stream_handler)
+
+def logInfo(text_to_display):
+    logger.info('{}'.format(text_to_display))
 
 def check_positive(value):
     try:
