@@ -21,6 +21,7 @@ $ ./install.sh
 ```bash
 $ processchecker -p node -t 5
 $ processchecker --process node --timeInSeconds 5
+$ processchecker -p docker -t 5 -s /mnt/d/Practice/Python/processchecker-cli/sample/directories.sh 
 ```
 
 # Help

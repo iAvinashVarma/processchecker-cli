@@ -5,17 +5,19 @@ class Checker():
     def __init__(self, args):
         self.process = args.process
         self.timeInSeconds = args.timeInSeconds
+        self.script = args.script
 
     def runprocess(self):
         logInfo(f'Given process :: {self.process}')
         logInfo(f'Given time to check in seconds :: {self.timeInSeconds}')
+        logInfo(f'Given script to run :: {self.script}')
         while True:
             try:
                 logInfo(f'Check if process :: {self.process} is running.')
                 if self.__isprocessrunning():
-                    logInfo(f'Yes a {self.process} process was already running')
+                    logInfo(f'+ {self.process} process was already running')
                 else:
-                    logInfo(f'No {self.process} process was not running, need to run')
+                    logInfo(f'- {self.process} process was not running, need to run')
                     self.__startprocess()
                 time.sleep(self.timeInSeconds)
             except KeyboardInterrupt:
@@ -34,5 +36,8 @@ class Checker():
         return False
 
     def __startprocess(self):
-        logInfo(f'Running {self.process} process...')
-        os.system(f'{self.process}')
+        if self.process.lower() == self.script.lower():
+            logInfo(f'Running {self.process} process...')
+        else:
+            logInfo(f'Running {self.script} script...')
+        os.system(f'{self.script}')
